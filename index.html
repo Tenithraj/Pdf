@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Viewer</title>
+</head>
+<body>
+
+<!-- Title -->
+<h2 style="text-align: center; font-weight: bold;">It's me tenith</h2>
+
+<!-- Dropdown for selecting content type -->
+<label for="contentTypeSelect">Select Content Type:</label>
+<select id="contentTypeSelect">
+    <option value="pdf">PDF</option>
+    <option value="video">Video</option>
+</select>
+
+<!-- Button to view selected content -->
+<button onclick="viewSelectedContent()">View Content</button>
+
+<!-- Container for displaying content -->
+<div id="contentContainer" style="width: 100%; height: 500px; border: 1px solid #ccc; margin-top: 20px;"></div>
+
+<!-- JavaScript to handle content viewing -->
+<script>
+    function viewSelectedContent() {
+        // Get the selected content type
+        var selectedContentType = document.getElementById("contentTypeSelect").value;
+
+        // Set the content URL based on the selected type
+        var contentURL = getContentURL(selectedContentType);
+
+        // Display the content in the container
+        if (selectedContentType === 'pdf') {
+            document.getElementById("contentContainer").innerHTML = '<iframe src="' + contentURL + '" width="100%" height="100%"></iframe>';
+        } else if (selectedContentType === 'video') {
+            document.getElementById("contentContainer").innerHTML = '<iframe width="100%" height="100%" src="' + contentURL + '" frameborder="0" allowfullscreen></iframe>';
+        }
+    }
+
+    function getContentURL(contentType) {
+        // Define the content URLs based on their types
+        var contentURLs = {
+            "pdf": "https://drive.google.com/file/d/1-szC4k0485PUXTh4Ojoj85PdfGbpqmLG/preview",
+            "video": "https://drive.google.com/file/d/1a-2HG5hTBYJODd5NAkPHXaw2neTJvGBU/preview"
+            // Add more content types and URLs as needed
+        };
+
+        // Return the corresponding content URL
+        return contentURLs[contentType];
+    }
+</script>
+
+</body>
+</html>
