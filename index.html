@@ -1,71 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Demo</title>
-    <style>
-        body {
-            background-color: #add8e6; /* Light blue background color */
-            margin: 0; /* Remove default body margin */
-            padding: 0; /* Remove default body padding */
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        img {
-            display: block;
-            margin: 0 auto;
-            max-width: 100%;
-            height: auto;
-        }
-
-        #pdfContainer {
-            width: 100%;
-            height: 500px;
-            border: 1px solid #ccc;
-            margin-top: 20px;
-        }
-
-        button {
-            display: block;
-            margin: 0 auto;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #4da6ff; /* Light blue button color */
-            color: #fff; /* White text color */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Image and Video Viewer</title>
 </head>
+
 <body>
 
-<!-- Text -->
-<h2>I AM TENITH</h2>
+    <h1>Image and Video Viewer</h1>
 
-<!-- Image -->
-<img src="https://drive.google.com/file/d/1-szC4k0485PUXTh4Ojoj85PdfGbpqmLG/view?usp=sharing" alt="Image Alt Text">
+    <!-- Image Button -->
+    <button onclick="showImage('https://raw.githubusercontent.com/Tenithraj/pdf/main/pmp.jpg')">Show Image</button>
 
-<!-- Button to view PDF -->
-<button onclick="viewPDF()">View PDF</button>
+    <!-- Video Button -->
+    <button onclick="playVideo('https://github.com/sheryislive/sundown/raw/main/video.mp4')">Play Video</button>
 
-<!-- Container for PDF -->
-<div id="pdfContainer"></div>
+    <!-- Container for Image and Video -->
+    <div id="mediaContainer"></div>
 
-<!-- JavaScript to handle PDF viewing -->
-<script>
-    function viewPDF() {
-        // PDF URL
-        var pdfURL = "https://github.com/Tenithraj/Pdf/blob/main/AD.pdf?raw=true";
+    <script>
+        function showImage(imageURL) {
+            var image = document.createElement('img');
+            image.src = imageURL;
+            document.getElementById('mediaContainer').innerHTML = '';
+            document.getElementById('mediaContainer').appendChild(image);
+        }
 
-        // Display PDF in the container
-        document.getElementById("pdfContainer").innerHTML = '<iframe src="' + pdfURL + '" width="100%" height="100%"></iframe>';
-    }
-</script>
+        function playVideo(videoURL) {
+            var video = document.createElement('video');
+            video.src = videoURL;
+            video.setAttribute('controls', 'controls');
+            video.setAttribute('autoplay', 'autoplay');
+            document.getElementById('mediaContainer').innerHTML = '';
+            document.getElementById('mediaContainer').appendChild(video);
+        }
+    </script>
 
 </body>
+
 </html>
