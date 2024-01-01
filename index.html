@@ -4,52 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player</title>
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Music Player</h1>
+    <h1>Simple Calculator</h1>
 
-    <label for="musicFile">Choose a music file:</label>
-    <input type="file" id="musicFile" accept="audio/*">
+    <input type="text" id="display" disabled>
 
-    <br><br>
+    <br>
 
-    <button onclick="playMusic()">Play Music</button>
-    <button onclick="pauseMusic()">Pause Music</button>
-    <button onclick="stopMusic()">Stop Music</button>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('+')">+</button>
+
+    <br>
+
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('-')">-</button>
+
+    <br>
+
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('*')">*</button>
+
+    <br>
+
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="calculateResult()">=</button>
+
+    <br>
 
     <script>
-        let audioPlayer;
-
-        function playMusic() {
-            const selectedFile = document.getElementById('musicFile').files[0];
-            if (selectedFile) {
-                if (audioPlayer) {
-                    stopMusic();
-                }
-                audioPlayer = new Audio(URL.createObjectURL(selectedFile));
-                audioPlayer.play();
-            } else {
-                alert('Please select a music file first.');
-            }
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
         }
 
-        function pauseMusic() {
-            if (audioPlayer) {
-                audioPlayer.pause();
-            }
+        function clearDisplay() {
+            document.getElementById('display').value = '';
         }
 
-        function stopMusic() {
-            if (audioPlayer) {
-                audioPlayer.pause();
-                audioPlayer.currentTime = 0;
+        function calculateResult() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
             }
         }
     </script>
 
 </body>
 
-</html>
+                                                </html>
