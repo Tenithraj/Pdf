@@ -4,37 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image and Video Viewer</title>
+    <title>Music Player</title>
 </head>
 
 <body>
 
-    <h1>Image and Video Viewer</h1>
+    <h1>Music Player</h1>
 
-    <!-- Image Button -->
-    <button onclick="showImage('https://raw.githubusercontent.com/Tenithraj/pdf/main/pmp.jpg')">Show Image</button>
+    <label for="musicFile">Choose a music file:</label>
+    <input type="file" id="musicFile" accept="audio/*">
 
-    <!-- Video Button -->
-    <button onclick="playVideo('https://github.com/sheryislive/sundown/raw/main/video.mp4')">Play Video</button>
+    <br><br>
 
-    <!-- Container for Image and Video -->
-    <div id="mediaContainer"></div>
+    <button onclick="playMusic()">Play Music</button>
+    <button onclick="pauseMusic()">Pause Music</button>
+    <button onclick="stopMusic()">Stop Music</button>
 
     <script>
-        function showImage(imageURL) {
-            var image = document.createElement('img');
-            image.src = imageURL;
-            document.getElementById('mediaContainer').innerHTML = '';
-            document.getElementById('mediaContainer').appendChild(image);
+        let audioPlayer;
+
+        function playMusic() {
+            const selectedFile = document.getElementById('musicFile').files[0];
+            if (selectedFile) {
+                if (audioPlayer) {
+                    stopMusic();
+                }
+                audioPlayer = new Audio(URL.createObjectURL(selectedFile));
+                audioPlayer.play();
+            } else {
+                alert('Please select a music file first.');
+            }
         }
 
-        function playVideo(videoURL) {
-            var video = document.createElement('video');
-            video.src = videoURL;
-            video.setAttribute('controls', 'controls');
-            video.setAttribute('autoplay', 'autoplay');
-            document.getElementById('mediaContainer').innerHTML = '';
-            document.getElementById('mediaContainer').appendChild(video);
+        function pauseMusic() {
+            if (audioPlayer) {
+                audioPlayer.pause();
+            }
+        }
+
+        function stopMusic() {
+            if (audioPlayer) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+            }
         }
     </script>
 
