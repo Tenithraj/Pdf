@@ -1,116 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styled Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
 
-        #calculator {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 20px;
-            max-width: 300px;
-        }
+    #pdf-container {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+    }
 
-        #display {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            font-size: 20px;
-            background-color: #ecf0f1;
-            border: none;
-            border-radius: 5px;
-            color: #333;
-        }
+    #pdf-viewer {
+      width: 75%;
+      height: 75vh;
+    }
 
-        button {
-            margin: 5px;
-            padding: 15px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #3498db;
-            color: white;
-            transition: background-color 0.3s;
-        }
+    .button-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+    }
 
-        button:hover {
-            background-color: #2980b9;
-        }
-    </style>
+    .pdf-button {
+      background-color: lightblue;
+      padding: 8px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="button-container">
+    <button class="pdf-button" onclick="loadPDF('p/pdf1.pdf')">1</button>
+    <button class="pdf-button" onclick="loadPDF('path/to/pdf2.pdf')">2</button>
+    <button class="pdf-button" onclick="loadPDF('path/to/pdf3.pdf')">3</button>
+    <button class="pdf-button" onclick="loadPDF('path/to/pdf4.pdf')">4</button>
+    <button class="pdf-button" onclick="loadPDF('path/to/pdf5.pdf')">5</button>
+  </div>
 
-    <div id="calculator">
-        <h1>Styled Calculator</h1>
+  <div id="pdf-container">
+    <embed id="pdf-viewer" type="application/pdf" />
+  </div>
 
-        <input type="text" id="display" disabled>
-
-        <br>
-
-        <button onclick="appendToDisplay('1')">1</button>
-        <button onclick="appendToDisplay('2')">2</button>
-        <button onclick="appendToDisplay('3')">3</button>
-        <button onclick="appendToDisplay('+')">+</button>
-
-        <br>
-
-        <button onclick="appendToDisplay('4')">4</button>
-        <button onclick="appendToDisplay('5')">5</button>
-        <button onclick="appendToDisplay('6')">6</button>
-        <button onclick="appendToDisplay('-')">-</button>
-
-        <br>
-
-        <button onclick="appendToDisplay('7')">7</button>
-        <button onclick="appendToDisplay('8')">8</button>
-        <button onclick="appendToDisplay('9')">9</button>
-        <button onclick="appendToDisplay('*')">*</button>
-
-        <br>
-
-        <button onclick="appendToDisplay('0')">0</button>
-        <button onclick="appendToDisplay('.')">.</button>
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="calculateResult()">=</button>
-    </div>
-
-    <script>
-        function appendToDisplay(value) {
-            document.getElementById('display').value += value;
-        }
-
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-        }
-
-        function calculateResult() {
-            try {
-                document.getElementById('display').value = eval(document.getElementById('display').value);
-            } catch (error) {
-                document.getElementById('display').value = 'Error';
-            }
-        }
-    </script>
-
+  <script>
+    function loadPDF(pdfPath) {
+      const pdfViewer = document.getElementById('pdf-viewer');
+      pdfViewer.src = pdfPath;
+      document.getElementById('pdf-container').style.display = 'block';
+    }
+  </script>
 </body>
-
 </html>
